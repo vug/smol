@@ -1,6 +1,10 @@
+#ifdef _DEBUG
 #include <print>
+#endif
 
 int main() {
+#ifdef _DEBUG
   std::println("Hello, World!");
-  return 0;
+#endif
+  return 1;
 }
