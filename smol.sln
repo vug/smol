@@ -15,16 +15,14 @@ Global
 		ReleaseCompressed|x86 = ReleaseCompressed|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{976EC20F-8F1B-419F-B6F7-F91BDD7172B9}.Debug|x64.ActiveCfg = Debug|x64
-		{976EC20F-8F1B-419F-B6F7-F91BDD7172B9}.Debug|x64.Build.0 = Debug|x64
+		{976EC20F-8F1B-419F-B6F7-F91BDD7172B9}.Debug|x64.ActiveCfg = Debug|Win32
 		{976EC20F-8F1B-419F-B6F7-F91BDD7172B9}.Debug|x86.ActiveCfg = Debug|Win32
 		{976EC20F-8F1B-419F-B6F7-F91BDD7172B9}.Debug|x86.Build.0 = Debug|Win32
-		{976EC20F-8F1B-419F-B6F7-F91BDD7172B9}.Release|x64.ActiveCfg = Release|x64
-		{976EC20F-8F1B-419F-B6F7-F91BDD7172B9}.Release|x64.Build.0 = Release|x64
+		{976EC20F-8F1B-419F-B6F7-F91BDD7172B9}.Release|x64.ActiveCfg = Release|Win32
 		{976EC20F-8F1B-419F-B6F7-F91BDD7172B9}.Release|x86.ActiveCfg = Release|Win32
 		{976EC20F-8F1B-419F-B6F7-F91BDD7172B9}.Release|x86.Build.0 = Release|Win32
-		{976EC20F-8F1B-419F-B6F7-F91BDD7172B9}.ReleaseCompressed|x64.ActiveCfg = ReleaseCompressed|x64
-		{976EC20F-8F1B-419F-B6F7-F91BDD7172B9}.ReleaseCompressed|x64.Build.0 = ReleaseCompressed|x64
+		{976EC20F-8F1B-419F-B6F7-F91BDD7172B9}.ReleaseCompressed|x64.ActiveCfg = ReleaseCompressed|Win32
+		{976EC20F-8F1B-419F-B6F7-F91BDD7172B9}.ReleaseCompressed|x64.Build.0 = ReleaseCompressed|Win32
 		{976EC20F-8F1B-419F-B6F7-F91BDD7172B9}.ReleaseCompressed|x86.ActiveCfg = ReleaseCompressed|Win32
 		{976EC20F-8F1B-419F-B6F7-F91BDD7172B9}.ReleaseCompressed|x86.Build.0 = ReleaseCompressed|Win32
 	EndGlobalSection
