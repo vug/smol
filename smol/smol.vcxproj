@@ -87,6 +87,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);Opengl32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -112,7 +113,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <EntryPointSymbol>main</EntryPointSymbol>
-      <AdditionalDependencies>User32.lib;Kernel32.lib</AdditionalDependencies>
+      <AdditionalDependencies>User32.lib;Kernel32.lib;Gdi32.lib;Opengl32.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseCompressed|Win32'">
@@ -142,7 +143,7 @@
       </GenerateDebugInformation>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <EntryPointSymbol>main</EntryPointSymbol>
-      <AdditionalDependencies>User32.lib;Kernel32.lib</AdditionalDependencies>
+      <AdditionalDependencies>User32.lib;Kernel32.lib;Gdi32.lib;Opengl32.lib</AdditionalDependencies>
       <AdditionalOptions>/CRINKLER /PRIORITY:NORMAL /UNSAFEIMPORT /COMPMODE:VERYSLOW %(AdditionalOptions)</AdditionalOptions>
       <LinkErrorReporting>
       </LinkErrorReporting>
@@ -156,7 +157,8 @@
       <DataExecutionPrevention />
       <ImageHasSafeExceptionHandlers />
       <TargetMachine />
-      <ImportLibrary> </ImportLibrary>
+      <ImportLibrary>
+      </ImportLibrary>
     </Link>
     <Manifest>
       <SuppressStartupBanner>true</SuppressStartupBanner>
@@ -164,6 +166,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="OpenGL.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="OpenGL.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
