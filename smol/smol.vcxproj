@@ -105,6 +105,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <DebugInformationFormat>None</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ExceptionHandling>false</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,6 +133,7 @@
       <DebugInformationFormat>None</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <WholeProgramOptimization>false</WholeProgramOptimization>
+      <ExceptionHandling>false</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -167,9 +169,11 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="OpenGL.cpp" />
+    <ClCompile Include="Windows.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OpenGL.hpp" />
+    <ClInclude Include="Windows.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

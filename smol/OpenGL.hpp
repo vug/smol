@@ -4,9 +4,11 @@
 #ifndef WINAPI
 #define WINAPI __stdcall
 #define APIENTRY WINAPI
-#define DECLARE_HANDLE(name) struct name##__{int unused;}; typedef struct name##__ *name
-DECLARE_HANDLE(HGLRC); 
-DECLARE_HANDLE(HDC);
+//#define DECLARE_HANDLE(name) struct name##__{int unused;}; typedef struct name##__ *name
+struct HGLRC__;
+typedef struct HGLRC__ *HGLRC;
+struct HDC__;
+typedef struct HDC__ *HDC;
 typedef float FLOAT;
 typedef unsigned int UINT;
 #endif
