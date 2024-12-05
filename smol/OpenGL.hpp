@@ -29,6 +29,7 @@ typedef unsigned char GLboolean;
 #define GL_TRUE 1
 #define GL_FALSE 0
 #define GL_VERSION 0x1F02
+#define GL_NO_ERROR 0
 // WINGDIAPI const GLubyte *APIENTRY glGetString(GLenum name);
 #define GL_COLOR_BUFFER_BIT 0x00004000
 #define GL_DEPTH_BUFFER_BIT 0x00000100
@@ -60,6 +61,7 @@ typedef unsigned char GLboolean;
 #define GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT 0x8CD7
 #define GL_CULL_FACE 0x0B44
 #define GL_SCISSOR_TEST 0x0C11
+#define GL_SHADER_BINARY_FORMAT_SPIR_V 0x9551
 
 // Creates symbol for function pointer type of given method name
 #define FnPtrT(method) FnPtr_##method##_Proc
@@ -95,10 +97,13 @@ extern FnPtrT(wglChoosePixelFormatARB) wglChoosePixelFormatARB;
   using FnPtrT(method) = returnType(APIENTRY *)(__VA_ARGS__); \
   extern FnPtrT(method) method;
 
+DECLARE_FUNC_PTR_TYPE(glGetError, GLenum);
 DECLARE_FUNC_PTR_TYPE(glClearColor, void, GLfloat red, GLfloat green, GLfloat blue, GLfloat alpha);
 DECLARE_FUNC_PTR_TYPE(glClear, void, GLbitfield mask);
 DECLARE_FUNC_PTR_TYPE(glGetString, const GLubyte *, GLenum name);
 DECLARE_FUNC_PTR_TYPE(glCreateShader, GLuint, GLenum type);
+DECLARE_FUNC_PTR_TYPE(glShaderBinary, void, GLsizei count, const GLuint *shaders, GLenum binaryFormat, const void *binary, GLsizei length);
+DECLARE_FUNC_PTR_TYPE(glSpecializeShader, void, GLuint shader, const GLchar * pEntryPoint, GLuint numSpecializationConstants, const GLuint * pConstantIndex, const GLuint * pConstantValue);
 DECLARE_FUNC_PTR_TYPE(glShaderSource, void, GLuint shader, GLsizei count, const GLchar *const *string, const GLint *length);
 DECLARE_FUNC_PTR_TYPE(glCompileShader, void, GLuint shader);
 DECLARE_FUNC_PTR_TYPE(glGetShaderiv, void, GLuint shader, GLenum pname, GLint *params);

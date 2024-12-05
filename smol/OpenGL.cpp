@@ -5,10 +5,13 @@
 DEFINE_FUNC_PTR_TYPE(wglCreateContextAttribsARB);
 DEFINE_FUNC_PTR_TYPE(wglChoosePixelFormatARB);
 //
+DEFINE_FUNC_PTR_TYPE(glGetError);
 DEFINE_FUNC_PTR_TYPE(glClearColor);
 DEFINE_FUNC_PTR_TYPE(glClear);
 DEFINE_FUNC_PTR_TYPE(glGetString);
 DEFINE_FUNC_PTR_TYPE(glCreateShader);
+DEFINE_FUNC_PTR_TYPE(glShaderBinary);
+DEFINE_FUNC_PTR_TYPE(glSpecializeShader);
 DEFINE_FUNC_PTR_TYPE(glShaderSource);
 DEFINE_FUNC_PTR_TYPE(glCompileShader);
 DEFINE_FUNC_PTR_TYPE(glGetShaderiv);
@@ -48,9 +51,3 @@ DEFINE_FUNC_PTR_TYPE(glReadPixels);
 DEFINE_FUNC_PTR_TYPE(glCheckFramebufferStatus);
 DEFINE_FUNC_PTR_TYPE(glBufferSubData);
 DEFINE_FUNC_PTR_TYPE(glScissor);
-
-//#define GET_PROC_ADDRESS(method)                           \
-//  method = (FnPtrT(method))GetAnyGLFuncAddress(#method);   \
-//  if (!method) {                                           \
-//    fatal("Failed to initialize OpenGL function #method"); \
-//  }

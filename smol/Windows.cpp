@@ -57,14 +57,52 @@ void *Windows::getAnyGLFuncAddress(const char *name) const {
   method = (FnPtrT(method))getAnyGLFuncAddress(#method);
 
 void Windows::initOpenGlFunctions() const {
-  GET_PROC_ADDRESS(glGetString);
-  const char *version = (const char *)glGetString(GL_VERSION);
-  logToConsole(version);
+  GET_PROC_ADDRESS(glGetError);
   GET_PROC_ADDRESS(glClearColor);
   GET_PROC_ADDRESS(glClear);
-
-  // GET_PROC_ADDRESS(wglCreateContextAttribsARB);
-  // GET_PROC_ADDRESS(wglChoosePixelFormatARB);
+  GET_PROC_ADDRESS(glGetString);
+  GET_PROC_ADDRESS(glCreateShader);
+  GET_PROC_ADDRESS(glShaderBinary);
+  GET_PROC_ADDRESS(glSpecializeShader);
+  GET_PROC_ADDRESS(glCreateProgram);
+  GET_PROC_ADDRESS(glAttachShader);
+  GET_PROC_ADDRESS(glLinkProgram);
+  GET_PROC_ADDRESS(glGenVertexArrays);
+  GET_PROC_ADDRESS(glUseProgram);
+  GET_PROC_ADDRESS(glBindVertexArray);
+  GET_PROC_ADDRESS(glDrawArrays);
+  //GET_PROC_ADDRESS(glShaderSource);
+  //GET_PROC_ADDRESS(glCompileShader);
+  //GET_PROC_ADDRESS(glGetShaderiv);
+  //GET_PROC_ADDRESS(glGetProgramiv);
+  //GET_PROC_ADDRESS(glGetShaderInfoLog);
+  //GET_PROC_ADDRESS(glGetProgramInfoLog);
+  //GET_PROC_ADDRESS(glCreateBuffers);
+  //GET_PROC_ADDRESS(glDeleteBuffers);
+  //GET_PROC_ADDRESS(glBindBuffer);
+  //GET_PROC_ADDRESS(glBufferData);
+  //GET_PROC_ADDRESS(glCreateVertexArrays);
+  //GET_PROC_ADDRESS(glDeleteVertexArrays);
+  //GET_PROC_ADDRESS(glEnableVertexAttribArray);
+  //GET_PROC_ADDRESS(glVertexAttribPointer);
+  //GET_PROC_ADDRESS(glDrawElements);
+  //GET_PROC_ADDRESS(glEnable);
+  //GET_PROC_ADDRESS(glDepthFunc);
+  //GET_PROC_ADDRESS(glGetUniformLocation);
+  //GET_PROC_ADDRESS(glUniform1f);
+  //GET_PROC_ADDRESS(glUniformMatrix4fv);
+  //GET_PROC_ADDRESS(glBindBufferBase);
+  //GET_PROC_ADDRESS(glGenTextures);
+  //GET_PROC_ADDRESS(glBindTexture);
+  //GET_PROC_ADDRESS(glTexImage2D);
+  //GET_PROC_ADDRESS(glGenFramebuffers);
+  //GET_PROC_ADDRESS(glBindFramebuffer);
+  //GET_PROC_ADDRESS(glFramebufferTexture2D);
+  //GET_PROC_ADDRESS(glViewport);
+  //GET_PROC_ADDRESS(glReadPixels);
+  //GET_PROC_ADDRESS(glCheckFramebufferStatus);
+  //GET_PROC_ADDRESS(glBufferSubData);
+  //GET_PROC_ADDRESS(glScissor);
 }
 
 short Windows::getKeyState(int keyCode) const {
