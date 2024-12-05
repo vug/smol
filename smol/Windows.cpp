@@ -34,7 +34,9 @@ Windows::Windows(int width, int height)
         wglMakeCurrent(hDevice, hContext);
         return hContext;
       }()),
-      openglLib(LoadLibraryA("opengl32.dll")) {}
+      openglLib(LoadLibraryA("opengl32.dll")) {
+  initOpenGlFunctions();
+}
 
 void Windows::logToConsole(const char* message) const {
   unsigned int messageLength{};
