@@ -33,4 +33,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\triangle_without_vbo.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="assets\triangle_without_vbo.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

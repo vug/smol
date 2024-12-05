@@ -175,6 +175,10 @@
     <ClInclude Include="OpenGL.hpp" />
     <ClInclude Include="Windows.hpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\triangle_without_vbo.frag" />
+    <None Include="assets\triangle_without_vbo.vert" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
