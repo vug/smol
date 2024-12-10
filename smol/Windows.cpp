@@ -118,3 +118,9 @@ void Windows::swapBuffers() const {
 void Windows::exit() const {
   ExitProcess(0);
 }
+
+void *operator new[](size_t size) {
+  HANDLE heap = GetProcessHeap();
+  void *ptr = HeapAlloc(heap, HEAP_ZERO_MEMORY, size);
+  return ptr;
+}

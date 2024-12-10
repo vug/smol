@@ -9,6 +9,7 @@ typedef struct HGLRC__* HGLRC;
 struct HINSTANCE__;
 typedef struct HINSTANCE__* HINSTANCE;
 
+void* operator new[](size_t size);
 
 class Windows {
  public:
