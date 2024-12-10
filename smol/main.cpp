@@ -15,8 +15,49 @@ constexpr float smolSqrt(float value) {
   return result;
 }
 
+
+struct Vec3 {
+  float v[3];
+};
+
+struct Mesh {
+  Vec3* positions;
+  uint32_t numVertices;
+  uint32_t* indices;
+  uint32_t numIndices;
+};
+
+constexpr Mesh generateTetrahedron(const float size = 1.0f) {
+  Mesh mesh;
+
+  // Calculate vertices using a regular tetrahedron centered at origin
+  const float a = size * 1.0f / smolSqrt(3.0f);
+  const float b = size * smolSqrt(8.0f / 9.0f);
+  const float c = size * -1.0f / 3.0f;
+  
+  mesh.positions = new Vec3[]{{0, a, 0},
+                              {-size / 2, c, -b / 3},
+                              {size / 2, c, -b / 3},
+                              {0, c, 2 * b / 3},};
+  mesh.numVertices = 4;
+
+  // Indices for the four triangular faces
+  // Counter-clockwise winding order for proper face culling
+  mesh.indices = new unsigned int[]{
+      0, 2, 1,  // Front face
+      0, 3, 2,  // Right face
+      0, 1, 3,  // Left face
+      1, 2, 3,  // Bottom face
+  };
+  mesh.numIndices = 12;
+
+  return mesh;
+}
+
 int main() {
   Windows windows(1024, 768);
+
+  const Mesh tetrahedron = generateTetrahedron(1.0f);
 
   const GLuint vertexShader = createShaderFromSPIRVHeader(GL_VERTEX_SHADER, vertex_shader_bin, sizeof(vertex_shader_bin));
   const GLuint fragmentShader = createShaderFromSPIRVHeader(GL_FRAGMENT_SHADER, fragment_shader_bin, sizeof(fragment_shader_bin));
