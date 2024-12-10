@@ -5,6 +5,16 @@
 #include "assets/tri_v.hpp"
 #include "assets/tri_f.hpp"
 
+constexpr float smolSqrt(float value) {
+  float result;
+  __asm {
+    movss xmm0, value    ; Load the input value into the XMM0 register
+    sqrtss xmm0, xmm0    ; Compute the square root of the value in XMM0
+    movss result, xmm0   ; Store the result back to memory
+  }
+  return result;
+}
+
 int main() {
   Windows windows(1024, 768);
 
