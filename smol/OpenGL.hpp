@@ -62,6 +62,12 @@ typedef unsigned char GLboolean;
 #define GL_CULL_FACE 0x0B44
 #define GL_SCISSOR_TEST 0x0C11
 #define GL_SHADER_BINARY_FORMAT_SPIR_V 0x9551
+// for glNamedBufferStorage
+#define GL_DYNAMIC_STORAGE_BIT 0x0100
+#define GL_MAP_READ_BIT 0x0001
+#define GL_MAP_WRITE_BIT 0x0002
+#define GL_MAP_PERSISTENT_BIT 0x0040
+#define GL_MAP_COHERENT_BIT 0x0080
 
 // Creates symbol for function pointer type of given method name
 #define FnPtrT(method) FnPtr_##method##_Proc
@@ -107,17 +113,19 @@ DECLARE_FUNC_PTR_TYPE(glSpecializeShader, void, GLuint shader, const GLchar * pE
 DECLARE_FUNC_PTR_TYPE(glCreateProgram, GLuint);
 DECLARE_FUNC_PTR_TYPE(glAttachShader, void, GLuint program, GLuint shader);
 DECLARE_FUNC_PTR_TYPE(glLinkProgram, void, GLuint program);
-DECLARE_FUNC_PTR_TYPE(glGenVertexArrays, void, GLsizei n, GLuint *arrays);
+DECLARE_FUNC_PTR_TYPE(glCreateVertexArrays, void, GLsizei n, GLuint* arrays);
+//DECLARE_FUNC_PTR_TYPE(glGenVertexArrays, void, GLsizei n, GLuint *arrays);
 DECLARE_FUNC_PTR_TYPE(glUseProgram, void, GLuint program);
 DECLARE_FUNC_PTR_TYPE(glBindVertexArray, void, GLuint array);
 DECLARE_FUNC_PTR_TYPE(glDrawArrays, void, GLenum mode, GLint first, GLsizei count);
+DECLARE_FUNC_PTR_TYPE(glCreateBuffers, void, GLsizei n, GLuint *buffers);
+DECLARE_FUNC_PTR_TYPE(glNamedBufferStorage, void, GLuint buffer, GLsizeiptr size, const void *data, GLbitfield flags);
 //DECLARE_FUNC_PTR_TYPE(glShaderSource, void, GLuint shader, GLsizei count, const GLchar *const *string, const GLint *length);
 //DECLARE_FUNC_PTR_TYPE(glCompileShader, void, GLuint shader);
 //DECLARE_FUNC_PTR_TYPE(glGetShaderiv, void, GLuint shader, GLenum pname, GLint *params);
 //DECLARE_FUNC_PTR_TYPE(glGetProgramiv, void, GLuint program, GLenum pname, GLint *params);
 //DECLARE_FUNC_PTR_TYPE(glGetShaderInfoLog, void, GLuint shader, GLsizei bufSize, GLsizei *length, GLchar *infoLog);
 //DECLARE_FUNC_PTR_TYPE(glGetProgramInfoLog, void, GLuint shader, GLsizei bufSize, GLsizei *length, GLchar *infoLog);
-//DECLARE_FUNC_PTR_TYPE(glCreateBuffers, void, GLsizei n, GLuint *buffers);
 //DECLARE_FUNC_PTR_TYPE(glDeleteBuffers, void, GLsizei n, const GLuint *buffers);
 //DECLARE_FUNC_PTR_TYPE(glBindBuffer, void, GLenum target, GLuint buffer);
 //DECLARE_FUNC_PTR_TYPE(glBufferData, void, GLenum target, GLsizeiptr size, const void *data, GLenum usage);

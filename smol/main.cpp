@@ -58,6 +58,11 @@ int main() {
   Windows windows(1024, 768);
 
   const Mesh tetrahedron = generateTetrahedron(1.0f);
+  GLuint buffers[4];
+  glCreateBuffers(4, buffers);
+  auto [vbPosition, vbNormal, vbColor, ib] = buffers;
+  //const GLsizeiptr bufferSizeBytes = tetrahedron.numVertices * sizeof(Vec3);
+  //glNamedBufferStorage(vbPosition, bufferSizeBytes, tetrahedron.positions, 0);
 
   const GLuint vertexShader = createShaderFromSPIRVHeader(GL_VERTEX_SHADER, vertex_shader_bin, sizeof(vertex_shader_bin));
   const GLuint fragmentShader = createShaderFromSPIRVHeader(GL_FRAGMENT_SHADER, fragment_shader_bin, sizeof(fragment_shader_bin));
@@ -67,7 +72,7 @@ int main() {
   glLinkProgram(program);
 
   uint32_t vertexArray;
-  glGenVertexArrays(1, &vertexArray);
+  glCreateVertexArrays(1, &vertexArray);
 
   while (!windows.getKeyState(0x1B /*VK_ESCAPE*/)) {
     glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
