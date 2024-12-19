@@ -1,3 +1,7 @@
+#ifdef _DEBUG
+#include <print>
+#endif
+
 #include "OpenGl.hpp"
 #include "Windows.hpp"
 
@@ -56,6 +60,10 @@ constexpr Mesh generateTetrahedron(const float size = 1.0f) {
 
 int main() {
   Windows windows(1024, 768);
+
+#ifdef _DEBUG
+  std::println("version: {}", (const char*)glGetString(GL_VERSION));
+#endif
 
   const Mesh tetrahedron = generateTetrahedron(1.0f);
   GLuint buffers[4];

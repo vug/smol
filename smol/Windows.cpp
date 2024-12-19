@@ -10,6 +10,9 @@ extern "C" {
   int _fltused = 0;
 }
 
+#define GET_PROC_ADDRESS(method) \
+  method = reinterpret_cast<FnPtrT(method)>(getAnyGLFuncAddress(#method));
+
 Windows::Windows(int width, int height)
     : kStdOut(GetStdHandle(STD_OUTPUT_HANDLE)),
       kWidth(width),
@@ -18,7 +21,8 @@ Windows::Windows(int width, int height)
         // By default STATIC window will have title also drawn inside the
         // window. But that'd be erased when window is cleared
         const HWND hWindow = CreateWindowA(
-            "STATIC", "Smol", WS_OVERLAPPED, CW_USEDEFAULT, CW_USEDEFAULT,
+            "STATIC", "Smol", WS_OVERLAPPED | CS_OWNDC, CW_USEDEFAULT,
+            CW_USEDEFAULT,
             kWidth, kHeight, nullptr, nullptr, nullptr, nullptr);
         ShowCursor(0);  // Hides mouse cursor over the window
         ShowWindow(hWindow, SW_SHOW);
@@ -32,6 +36,20 @@ Windows::Windows(int width, int height)
         SetPixelFormat(hDevice, format, &pfd);
         HGLRC hContext = wglCreateContext(hDevice);
         wglMakeCurrent(hDevice, hContext);
+
+#if defined(EXPLICITLY_SET_GL_VERSION)
+        GET_PROC_ADDRESS(wglCreateContextAttribsARB);
+        wglDeleteContext(hContext);
+        int attribs[] = {
+            WGL_CONTEXT_MAJOR_VERSION_ARB, 4,
+            WGL_CONTEXT_MINOR_VERSION_ARB, 6,
+            WGL_CONTEXT_PROFILE_MASK_ARB, WGL_CONTEXT_CORE_PROFILE_BIT_ARB,
+            0  // End of attributes list
+        };
+        hContext = wglCreateContextAttribsARB(hDevice, nullptr, attribs);
+        wglMakeCurrent(hDevice, hContext);
+#endif
+
         return hContext;
       }()),
       openglLib(LoadLibraryA("opengl32.dll")) {
@@ -54,9 +72,6 @@ void *Windows::getAnyGLFuncAddress(const char *name) const {
   }
   return p;
 }
-
-#define GET_PROC_ADDRESS(method) \
-  method = (FnPtrT(method))getAnyGLFuncAddress(#method);
 
 void Windows::initOpenGlFunctions() const {
   GET_PROC_ADDRESS(glGetError);
