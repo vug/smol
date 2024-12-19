@@ -21,9 +21,14 @@ typedef unsigned int GLbitfield;
 typedef unsigned int GLuint;
 typedef unsigned int GLenum;
 typedef float GLfloat;
-typedef signed long long int khronos_ssize_t;  // _WIN64
+#if defined(_WIN64)
+typedef signed long long int khronos_ssize_t;
+typedef signed long long int khronos_intptr_t;
+#else // Win32/x86
+typedef signed long int khronos_ssize_t;
+typedef signed long int khronos_intptr_t;
+#endif
 typedef khronos_ssize_t GLsizeiptr;
-typedef signed long long int khronos_intptr_t;  // _WIN64
 typedef khronos_intptr_t GLintptr;
 typedef unsigned char GLboolean;
 #define GL_TRUE 1

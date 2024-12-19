@@ -61,8 +61,8 @@ int main() {
   GLuint buffers[4];
   glCreateBuffers(4, buffers);
   auto [vbPosition, vbNormal, vbColor, ib] = buffers;
-  //const GLsizeiptr bufferSizeBytes = tetrahedron.numVertices * sizeof(Vec3);
-  //glNamedBufferStorage(vbPosition, bufferSizeBytes, tetrahedron.positions, 0);
+  const GLsizeiptr bufferSizeBytes = tetrahedron.numVertices * sizeof(Vec3);
+  glNamedBufferStorage(vbPosition, bufferSizeBytes, tetrahedron.positions, 0);
 
   const GLuint vertexShader = createShaderFromSPIRVHeader(GL_VERTEX_SHADER, vertex_shader_bin, sizeof(vertex_shader_bin));
   const GLuint fragmentShader = createShaderFromSPIRVHeader(GL_FRAGMENT_SHADER, fragment_shader_bin, sizeof(fragment_shader_bin));
