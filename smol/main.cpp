@@ -2,22 +2,13 @@
 #include <print>
 #endif
 
+#include "Math.hpp"
 #include "OpenGl.hpp"
 #include "Windows.hpp"
 
 #define uint32_t unsigned int
 #include "assets/tri_v.hpp"
 #include "assets/tri_f.hpp"
-
-constexpr float smolSqrt(float value) {
-  float result;
-  __asm {
-    movss xmm0, value    ; Load the input value into the XMM0 register
-    sqrtss xmm0, xmm0    ; Compute the square root of the value in XMM0
-    movss result, xmm0   ; Store the result back to memory
-  }
-  return result;
-}
 
 
 struct Vec3 {
@@ -35,8 +26,8 @@ constexpr Mesh generateTetrahedron(const float size = 1.0f) {
   Mesh mesh;
 
   // Calculate vertices using a regular tetrahedron centered at origin
-  const float a = size * 1.0f / smolSqrt(3.0f);
-  const float b = size * smolSqrt(8.0f / 9.0f);
+  const float a = size * 1.0f / smol::sqrt(3.0f);
+  const float b = size * smol::sqrt(8.0f / 9.0f);
   const float c = size * -1.0f / 3.0f;
   
   mesh.positions = new Vec3[]{{0, a, 0},
