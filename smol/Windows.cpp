@@ -91,6 +91,12 @@ void Windows::initOpenGlFunctions() const {
   GET_PROC_ADDRESS(glDrawArrays);
   GET_PROC_ADDRESS(glCreateBuffers);
   GET_PROC_ADDRESS(glNamedBufferStorage);
+  GET_PROC_ADDRESS(glEnableVertexArrayAttrib);
+  GET_PROC_ADDRESS(glVertexArrayAttribFormat);
+  GET_PROC_ADDRESS(glVertexArrayVertexBuffer);
+  GET_PROC_ADDRESS(glVertexArrayAttribBinding);
+  GET_PROC_ADDRESS(glVertexArrayElementBuffer);
+  GET_PROC_ADDRESS(glDrawElements);
   //GET_PROC_ADDRESS(glShaderSource);
   //GET_PROC_ADDRESS(glCompileShader);
   //GET_PROC_ADDRESS(glGetShaderiv);
@@ -104,7 +110,6 @@ void Windows::initOpenGlFunctions() const {
   //GET_PROC_ADDRESS(glDeleteVertexArrays);
   //GET_PROC_ADDRESS(glEnableVertexAttribArray);
   //GET_PROC_ADDRESS(glVertexAttribPointer);
-  //GET_PROC_ADDRESS(glDrawElements);
   //GET_PROC_ADDRESS(glEnable);
   //GET_PROC_ADDRESS(glDepthFunc);
   //GET_PROC_ADDRESS(glGetUniformLocation);
