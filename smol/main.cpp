@@ -10,10 +10,7 @@
 #include "assets/tri_v.hpp"
 #include "assets/tri_f.hpp"
 
-
-struct Vec3 {
-  float v[3];
-};
+using namespace smol;
 
 struct Mesh {
   Vec3* positions;

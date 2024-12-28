@@ -65,4 +65,19 @@ inline float smolAtan2(float y, float x) {
   return result;
 }
 
+struct Vec3 {
+  float x{};
+  float y{};
+  float z{};
+};
+
+inline constexpr float dot(Vec3 u, Vec3 v) {
+  return u.x * v.x + u.y * u.y + u.z * u.z;
+}
+
+inline constexpr Vec3 cross(Vec3 u, Vec3 v) {
+  return Vec3{u.y * v.z - u.z * v.y, -(u.x * v.z - u.z * v.x),
+              u.x * v.y - u.y * v.x};
+}
+
 }  // namespace smol
