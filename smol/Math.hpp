@@ -80,7 +80,7 @@ struct Vec3 {
 };
 
 struct Mat4 {
-  float m[4][4];
+  float m[4][4] = {{1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}};
 };
 
 inline constexpr float dot(Vec3 u, Vec3 v) {
@@ -96,44 +96,13 @@ Vec3 operator-(const Vec3& u, const Vec3& v) {
   return Vec3{u.x - v.x, u.y - v.y, u.z - v.z};
 }
 
-Mat4 lookAt(Vec3 eye, Vec3 target, Vec3 up) {
-  // Calculate camera coordinate system
-  const Vec3 zaxis = (eye - target).normalize();  // Camera looks down -z
-  const Vec3 xaxis = cross(up, zaxis).normalize();
-  const Vec3 yaxis = cross(zaxis, xaxis);  // Already normalized
-
-  // Create view matrix
-  Mat4 view;
-
-  // Rotation part
-  view.m[0][0] = xaxis.x; view.m[0][1] = xaxis.y; view.m[0][2] = xaxis.z;
-  view.m[1][0] = yaxis.x; view.m[1][1] = yaxis.y; view.m[1][2] = yaxis.z;
-  view.m[2][0] = zaxis.x; view.m[2][1] = zaxis.y; view.m[2][2] = zaxis.z;
-
-  // Translation part
-  view.m[0][3] = -dot(xaxis, eye);
-  view.m[1][3] = -dot(yaxis, eye);
-  view.m[2][3] = -dot(zaxis, eye);
-
+Mat4 lookAt([[maybe_unused]] Vec3 eye, [[maybe_unused]] Vec3 target, [[maybe_unused]]Vec3 up) {
+  Mat4 view{};
   return view;
 }
 
-Mat4 perspective(float fovY, float aspect, float nearZ, float farZ) {
-  Mat4 proj;
-    
-  // Clear the matrix first (set all elements to 0)
-  for(int i = 0; i < 4; i++)
-      for(int j = 0; j < 4; j++)
-          proj.m[i][j] = 0.0f;
-    
-  float tanHalfFovy = tan(fovY / 2);
-    
-  proj.m[0][0] = 1.0f / (aspect * tanHalfFovy); // Scale x
-  proj.m[1][1] = 1.0f / tanHalfFovy;            // Scale y
-  proj.m[2][2] = -(farZ + nearZ) / (farZ - nearZ);  // Scale and map z
-  proj.m[2][3] = -(2.0f * farZ * nearZ) / (farZ - nearZ);
-  proj.m[3][2] = -1.0f;  // This makes it a perspective projection
-    
+Mat4 perspective([[maybe_unused]] float fovY, [[maybe_unused]] float aspect, [[maybe_unused]] float nearZ, [[maybe_unused]] float farZ) {
+  Mat4 proj = Mat4{};
   return proj;
 }
 

@@ -73,6 +73,7 @@ typedef unsigned char GLboolean;
 #define GL_MAP_WRITE_BIT 0x0002
 #define GL_MAP_PERSISTENT_BIT 0x0040
 #define GL_MAP_COHERENT_BIT 0x0080
+#define GL_UNIFORM_BUFFER 0x8A11
 
 // Creates symbol for function pointer type of given method name
 #define FnPtrT(method) FnPtr_##method##_Proc
@@ -131,6 +132,11 @@ DECLARE_FUNC_PTR_TYPE(glVertexArrayVertexBuffer, void, GLuint vaobj, GLuint bind
 DECLARE_FUNC_PTR_TYPE(glVertexArrayAttribBinding, void, GLuint vaobj, GLuint attribindex, GLuint bindingindex);
 DECLARE_FUNC_PTR_TYPE(glVertexArrayElementBuffer, void, GLuint vaobj, GLuint buffer);
 DECLARE_FUNC_PTR_TYPE(glDrawElements, void, GLenum mode, GLsizei count, GLenum type, const void * indices);
+DECLARE_FUNC_PTR_TYPE(glBindBufferBase, void, GLenum target, GLuint index, GLuint buffer);
+DECLARE_FUNC_PTR_TYPE(glNamedBufferSubData, void, GLuint buffer, GLintptr offset, GLsizeiptr size, const void * data);
+DECLARE_FUNC_PTR_TYPE(glViewport, void, GLint x, GLint y, GLsizei width, GLsizei height);
+DECLARE_FUNC_PTR_TYPE(glEnable, void, GLenum cap);
+DECLARE_FUNC_PTR_TYPE(glDisable, void, GLenum cap);
 //DECLARE_FUNC_PTR_TYPE(glShaderSource, void, GLuint shader, GLsizei count, const GLchar *const *string, const GLint *length);
 //DECLARE_FUNC_PTR_TYPE(glCompileShader, void, GLuint shader);
 //DECLARE_FUNC_PTR_TYPE(glGetShaderiv, void, GLuint shader, GLenum pname, GLint *params);
@@ -144,19 +150,16 @@ DECLARE_FUNC_PTR_TYPE(glDrawElements, void, GLenum mode, GLsizei count, GLenum t
 //DECLARE_FUNC_PTR_TYPE(glDeleteVertexArrays, void, GLsizei n, const GLuint *arrays);
 //DECLARE_FUNC_PTR_TYPE(glEnableVertexAttribArray, void, GLuint index);
 //DECLARE_FUNC_PTR_TYPE(glVertexAttribPointer, void, GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void *pointer);
-//DECLARE_FUNC_PTR_TYPE(glEnable, void, GLenum cap);
 //DECLARE_FUNC_PTR_TYPE(glDepthFunc, void, GLenum func);
 //DECLARE_FUNC_PTR_TYPE(glGetUniformLocation, GLint, GLuint program, const GLchar *name);
 //DECLARE_FUNC_PTR_TYPE(glUniform1f, void, GLint location, GLfloat v0);
 //DECLARE_FUNC_PTR_TYPE(glUniformMatrix4fv, void, GLint location, GLsizei count, GLboolean transpose, const GLfloat *value);
-//DECLARE_FUNC_PTR_TYPE(glBindBufferBase, void, GLenum target, GLuint index, GLuint buffer);
 //DECLARE_FUNC_PTR_TYPE(glGenTextures, void, GLsizei n, GLuint *textures);
 //DECLARE_FUNC_PTR_TYPE(glBindTexture, void, GLenum target, GLuint texture);
 //DECLARE_FUNC_PTR_TYPE(glTexImage2D, void, GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height, GLint border, GLenum format, GLenum type, const void *pixels);
 //DECLARE_FUNC_PTR_TYPE(glGenFramebuffers, void, GLsizei n, GLuint *framebuffers);
 //DECLARE_FUNC_PTR_TYPE(glBindFramebuffer, void, GLenum target, GLuint framebuffer);
 //DECLARE_FUNC_PTR_TYPE(glFramebufferTexture2D, void, GLenum target, GLenum attachment, GLenum textarget, GLuint texture, GLint level);
-//DECLARE_FUNC_PTR_TYPE(glViewport, void, GLint x, GLint y, GLsizei width, GLsizei height);
 //DECLARE_FUNC_PTR_TYPE(glReadPixels, void, GLint x, GLint y, GLsizei width, GLsizei height, GLenum format, GLenum type, void *pixels);
 //DECLARE_FUNC_PTR_TYPE(glCheckFramebufferStatus, GLenum, GLenum target);
 //DECLARE_FUNC_PTR_TYPE(glBufferSubData, void, GLenum target, GLintptr offset, GLsizeiptr size, const void *data);
