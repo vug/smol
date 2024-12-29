@@ -118,8 +118,8 @@ int main() {
   const float aspect = 1024.f / 768.f;
   uniforms.projection = perspective(fovY, aspect, 0.1f, 100.0f);
 
-
   glEnable(GL_DEPTH_TEST);
+  glDisable(GL_CULL_FACE);
 
   while (!windows.getKeyState(0x1B /*VK_ESCAPE*/)) {
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
