@@ -13,6 +13,9 @@ extern "C" {
 #define GET_PROC_ADDRESS(method) \
   method = reinterpret_cast<FnPtrT(method)>(getAnyGLFuncAddress(#method));
 
+// To use RenderDoc uncomment below line:
+// #define EXPLICITLY_SET_GL_VERSION
+
 Windows::Windows(int width, int height)
     : kStdOut(GetStdHandle(STD_OUTPUT_HANDLE)),
       kWidth(width),
