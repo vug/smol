@@ -77,6 +77,13 @@ struct Vec3 {
     z /= len;
     return *this;
   }
+
+  constexpr inline Vec3& scale(float s) {
+    x *= s;
+    y *= s;
+    z *= s;
+    return *this;
+  }
 };
 
 struct Mat4 {
@@ -94,6 +101,14 @@ inline constexpr Vec3 cross(Vec3 u, Vec3 v) {
 
 inline constexpr Vec3 operator-(const Vec3& u, const Vec3& v) {
   return Vec3{u.x - v.x, u.y - v.y, u.z - v.z};
+}
+
+inline constexpr Vec3 operator+(const Vec3& u, const Vec3& v) {
+  return Vec3{u.x + v.x, u.y + v.y, u.z + v.z};
+}
+
+inline constexpr Vec3 operator*(float scalar, const Vec3& v) {
+  return Vec3{scalar * v.x, scalar * v.y, scalar * v.z};
 }
 
 
