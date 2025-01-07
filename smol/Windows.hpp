@@ -10,6 +10,8 @@ struct HINSTANCE__;
 typedef struct HINSTANCE__* HINSTANCE;
 
 void* operator new[](size_t size);
+void operator delete[](void* ptr) noexcept;
+
 
 class Windows {
  public:

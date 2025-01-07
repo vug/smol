@@ -151,3 +151,8 @@ void *operator new[](size_t size) {
   void *ptr = HeapAlloc(heap, HEAP_ZERO_MEMORY, size);
   return ptr;
 }
+
+void operator delete[](void *ptr) noexcept {
+  HANDLE heap = GetProcessHeap();
+  HeapFree(heap, 0, ptr);
+}
