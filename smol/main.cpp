@@ -94,7 +94,7 @@ constexpr Mesh generateTetrahedron2(const float size = 1.0f) {
   const Vec3 c0{1, 0, 0};
   const Vec3 c1{0, 1, 0};
   const Vec3 c2{0, 0, 1};
-  const Vec3 c3{1, 0, 01};
+  const Vec3 c3{1, 0, 1};
   mesh.colors = new Vec3[]{
       c0, c2, c1,  // Front face
       c0, c3, c2,  // Right face
@@ -103,24 +103,24 @@ constexpr Mesh generateTetrahedron2(const float size = 1.0f) {
   };
 
   mesh.indices = new uint32_t[12];
-  for (uint32_t ix = 0; ix < 12; ix++) {
+  for (uint32_t ix = 0; ix < 12; ix++)
     mesh.indices[ix] = ix;
-  }
   mesh.numIndices = 12;
 
   return mesh;
 }
 
-void iterateIcoSphere(const Vec3* inPositions, const uint32_t inNumPositions, Vec3* outPositions, uint32_t& outNumPositions) {
-  const uint32_t inNumTriangles = inNumPositions / 3;
-  outNumPositions = inNumPositions * 4;
-  outPositions = new Vec3[outNumPositions];
+void iterateIcoSphere(Mesh& mesh) {
+  // mesh.numVertices == mesh.numIndices;
+  const uint32_t inNumTriangles = mesh.numVertices / 3;
+  const uint32_t outNumPositions = mesh.numVertices * 4;
+  Vec3* outPositions = new Vec3[outNumPositions];
 
   for (uint32_t inTriIx = 0; inTriIx < inNumTriangles; ++inTriIx) {
     uint32_t vertIx = inTriIx * 3;
-    const Vec3& v0 = inPositions[vertIx + 0];
-    const Vec3& v1 = inPositions[vertIx + 1];
-    const Vec3& v2 = inPositions[vertIx + 2];
+    const Vec3& v0 = mesh.positions[vertIx + 0];
+    const Vec3& v1 = mesh.positions[vertIx + 1];
+    const Vec3& v2 = mesh.positions[vertIx + 2];
 
     const Vec3 m01 = (v0 + v1).scale(0.5f);
     const Vec3 m20 = (v0 + v2).scale(0.5f);
@@ -145,6 +145,25 @@ void iterateIcoSphere(const Vec3* inPositions, const uint32_t inNumPositions, Ve
     outPositions[outVertIx + 10] = m12;
     outPositions[outVertIx + 11] = m20;
   }
+
+  delete[] mesh.positions;
+  mesh.positions = outPositions;
+  mesh.numVertices = outNumPositions;
+  for (uint32_t vIx = 0; vIx < mesh.numVertices; ++vIx)
+    mesh.positions[vIx].normalize();
+
+
+  delete[] mesh.indices;
+  mesh.numIndices = mesh.numVertices;
+  mesh.indices = new uint32_t[mesh.numIndices];
+  for (uint32_t ix = 0; ix < mesh.numIndices; ++ix)
+    mesh.indices[ix] = ix;
+
+  delete[] mesh.colors;
+  mesh.colors = new Vec3[mesh.numVertices];
+  const Vec3 palette[4] = {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}, {1, 0, 1}};
+  for (uint32_t vIx = 0; vIx < mesh.numVertices; ++vIx)
+    mesh.colors[vIx] = palette[vIx % 4];
 }
 
 int main() {
@@ -156,6 +175,9 @@ int main() {
 
   //Mesh mesh = generateQuad(1.0f, {0, 0, 0});    // Center quad
   Mesh mesh = generateTetrahedron2();
+  iterateIcoSphere(mesh);
+  iterateIcoSphere(mesh);
+  iterateIcoSphere(mesh);
   GLuint buffers[5];
   glCreateBuffers(5, buffers);
   auto [vbPosition, vbNormal, vbColor, ib, ub] = buffers;
